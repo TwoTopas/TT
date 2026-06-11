@@ -1,6 +1,6 @@
 ---
 name: sync-skills-to-github
-description: One-command sync Hermes skills to TwoTopas/TT GitHub repo. Triggered by user saying "同步".
+description: One-command sync all knowledge (Hermes skills + LLM Wiki + Obsidian) to TwoTopas/TT GitHub repo. Triggered by user saying "同步".
 ---
 
 # Sync Skills to GitHub
