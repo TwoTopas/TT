@@ -1,0 +1,6 @@
+# Ignore hub metadata and usage tracking
+.hub/
+.usage.json
+.usage.json.lock
+__pycache__/
+*.pyc
