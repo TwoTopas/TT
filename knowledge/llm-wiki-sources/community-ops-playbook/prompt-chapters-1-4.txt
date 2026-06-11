@@ -1,0 +1,42 @@
+Create Chapters 1-4 of The Community Operations Playbook.
+
+First read:
+1. product-guide.md (Section 2, Tier 2 - chapter descriptions)
+2. translation-rules.md
+3. source-material-reference.md
+
+Create these files in C:\Users\hu\workspace\community-ops-playbook\playbook\:
+
+chapter-01-strategy.md (~8 pages / ~2000 words)
+- Define community purpose (not "build a community" - why?)
+- Choose platform: Discord vs Circle vs Skool vs Slack
+- Set goals and KPIs before launch
+- Member personas
+
+chapter-02-engagement-layer.md (~12 pages / ~3000 words)
+- The 3-tier model: Free -> Paid -> VIP
+- What each tier gets, how to move members up  
+- Engagement scoring system
+- Case example: 500-member Discord generating $48K/year
+
+chapter-03-daily-ops.md (~12 pages / ~3000 words)
+- Weekly rhythm (NOT hourly schedule - key adaptation from source material)
+- Daily themes: Educational Monday, Spotlight Tuesday, Interactive Wednesday, Culture Thursday, Roundup Friday, Light Weekend
+- Content pillars
+- Moderation workflows
+
+chapter-04-retention.md (~10 pages / ~2500 words)
+- First 14 days onboarding sequence
+- 6 engagement triggers
+- Reactivation campaigns
+- Community champion programs
+
+Requirements:
+- Native English, conversational tone
+- NO Chinese platform references whatsoever
+- NO translation-ese
+- Platform-specific examples (Discord channels, Circle spaces, Skool groups)
+- Each chapter ends with a "What to do this week" action section
+- Use real-sounding examples (clearly labeled as examples, not research)
+
+After creating all 4, report word count for each file.

@@ -1,0 +1,14 @@
+Apply these 5 fixes to the product at C:\Users\hu\workspace\community-ops-playbook:
+
+1. Create a "Community Health Score" quiz at playbook/community-health-score-quiz.md — a 5-question self-assessment quiz (server size, engagement rate, retention, monetization, content cadence). Each question has 3-4 multiple choice answers with points. Total maps to 0-100 score. Include a "Share Your Score" section with copy-paste text for Twitter/LinkedIn: "My Discord community scores X/100 on the Community Health Score. How does yours stack up? Take the free quiz → [link]"
+
+2. Create assets/built-with-playbook-badge.md — A description of a PNG badge that says "Built with The Community Operations Playbook" that server owners can add to their server description or website. Include the text to include and placement instructions.
+
+3. Add social proof counter to README.md. Add this section right after the title:
+"Join 500+ community operators using this system"
+
+4. Rewrite the Sarah case study in chapter-02-engagement-layer.md as a narrative story. Give her a name (keep Sarah), add a before/after transformation. Make it retellable by a friend.
+
+5. Create a "Free Sample Templates" page at templates/free-sample.md that collects 3 sample rows from 3 different templates as a teaser. Include a CTA to buy the full set.
+
+After ALL fixes, run the CONTAGIOUS scoring one final time using the contagious skill. Report the score per dimension and total.

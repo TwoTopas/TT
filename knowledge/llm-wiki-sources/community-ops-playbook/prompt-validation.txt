@@ -1,0 +1,54 @@
+You have the following skills loaded in your skills directory that you MUST use:
+- contagious (STEPPS framework - predict virality)
+- customer-research (validate market demand)
+- jobs-to-be-done (analyze customer needs)
+- pricing (evaluate pricing strategy)
+- launch (check launch readiness)
+- competitors (competitive analysis)
+- crossing-the-chasm (tech adoption lifecycle)
+- blue-ocean-strategy (market creation)
+
+Perform a COMPLETE validation of the product at C:\Users\hu\workspace\community-ops-playbook.
+
+First read all files in that directory to understand the product.
+
+Then produce a structured report covering:
+
+## 1. CONTAGIOUS Score (use the contagious skill)
+Score each STEPPS dimension 0-10:
+- Social Currency: Does sharing this product make the buyer look good?
+- Triggers: What daily situations remind target customers they need this?
+- Emotion: Does the product evoke high-arousal feelings?
+- Public: Can others see people using it?
+- Practical Value: How useful is it to share?
+- Stories: Is there a story worth telling?
+Overall score and specific recommendations.
+
+## 2. Customer Research Validation (use customer-research skill)
+- Who is the actual target customer?
+- What evidence exists that they want this?
+- What's the confidence level (red/yellow/green)?
+
+## 3. Jobs to Be Done (use jobs-to-be-done skill)
+- What job is the customer hiring this product for?
+- What's the current alternative (what do they do now)?
+- What's the trigger event that makes them look for a solution?
+
+## 4. Pricing Analysis (use pricing skill)
+- Is the $29/$49 pricing correct for the target market?
+- What's the willingness-to-pay signal?
+
+## 5. Competitive Position (use competitors skill)
+- How does this compare to Community Masters (free) and other alternatives?
+- What's the defensible moat?
+
+## 6. Launch Readiness (use launch skill)
+- What's missing before launch?
+- What channels should be used?
+
+## 7. Overall Verdict
+- Go / No-go / Conditional
+- Top 3 risks
+- Top 3 strengths
+
+Be thorough. Base everything on the actual product files you read, not assumptions.

@@ -1,0 +1,9 @@
+The product has been improved but needs one more scoring pass. Apply these tiny tweaks and then rescore:
+
+1. In README.md, add a short "The Story Behind This Playbook" section (3-4 sentences) about how the creator ran communities for years without a system, built one from scratch, and is now sharing it.
+
+2. In README.md, add a visible "Forward this to a server owner who needs it" CTA in the footer.
+
+Then run the CONTAGIOUS scoring again using your contagious skill. Score all 6 dimensions 0-10.
+
+After scoring, if the total is below 48/60, tell me exactly what to fix to reach 48+. If it's 48+ or higher, report the final score.

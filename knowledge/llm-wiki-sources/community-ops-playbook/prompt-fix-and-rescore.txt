@@ -1,0 +1,21 @@
+The product at C:\Users\hu\workspace\community-ops-playbook has been partially fixed. Now I need you to do the following:
+
+1. Convert BONUS CSV templates (in templates/bonus/) to xlsx files in templates_xlsx/bonus/ — same formatting as the main ones.
+
+2. Refocus the entire product for DISCORD FIRST. Change the README.md so the product leads with Discord. Move Circle/Skool to "also works with" section.
+
+3. Create a "Gumroad Sales Page" at C:\Users\hu\workspace\community-ops-playbook\gumroad-listing.md with:
+   - Compelling title: "The Discord Community Operations Playbook"
+   - Subtitle: "Stop winging it. Run your Discord like a pro."
+   - Bullet list of what's included
+   - Two tier pricing table
+   - Key benefits for Discord server owners
+   - Call to action
+
+4. Create a shareable output: Add a "Community Health Score" template that generates a score 0-100. This is something users can share on social media.
+
+5. Read the existing chapters and add a "Quick Wins" section at the top of each chapter (before the main content) that lists the 3 most actionable things the reader can do TODAY.
+
+After all fixes, run the contagious validation again using your skills. Score the updated product on all 6 STEPPS dimensions. Provide specific scores and recommendations for improvement. Aim for 45+/60.
+
+Report what you changed and the new CONTAGIOUS score.

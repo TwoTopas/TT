@@ -1,0 +1,18 @@
+Task,Category,Owner,Deadline,Status,Notes
+"What needs to happen","Which phase it belongs to","Who's responsible","When it's due","Not Started / In Progress / Done","Helpful context or links"
+"Define community purpose and mission statement",Strategy,Community Manager,2026-01-15,Done,"Keep it to 2-3 sentences. Answer: why does this community exist?"
+"Choose primary platform (Discord / Circle / Skool)",Platform,Community Manager,2026-01-18,Done,"Discord for real-time chat, Circle for courses, Skool for all-in-one"
+"Set up Discord server and channel structure",Platform,Community Manager,2026-01-20,In Progress,"Welcome, General, Resources, Events, Voice — start small"
+"Create community guidelines and rules",Content,Community Manager,2026-01-22,Pending,"Cover: behavior, spam, self-promo, dispute resolution"
+"Design role hierarchy and permission system",Platform,Admin,2026-01-25,Pending,"Free → Paid → VIP roles with escalating access"
+"Set up moderation bots (MEE6, Carl-bot, or Dyno)",Platform,Admin,2026-01-26,Pending,"Auto-mod, welcome messages, leveling, moderation logs"
+"Write welcome message and onboarding sequence",Content,Community Manager,2026-01-28,Pending,"DM on join + #welcome channel post + first-week sequence"
+"Create content pillars and editorial calendar",Content,Content Creator,2026-02-01,Pending,"Educational, community, promotional, cultural — 4 pillars minimum"
+"Set up analytics tracking (member count, engagement)",Platform,Admin,2026-02-01,Pending,"Statsbot or native Circle/Skool analytics"
+"Plan launch week activities and events",Events,Community Manager,2026-02-03,Pending,"AMA, icebreaker challenge, member spotlight, Q&A session"
+"Build landing page and referral link infrastructure",Growth,Marketing,2026-02-05,Pending,"Referral program setup with unique tracking links"
+"Test full member experience end-to-end",QA,Community Manager,2026-02-07,Pending,"Join as new user, go through onboarding, test all channels"
+"Recruit 5-10 launch ambassadors",Growth,Community Manager,2026-02-08,Pending,"Power users who'll invite others and seed conversations"
+"Soft launch with invite-only cohort",Launch,Community Manager,2026-02-10,Pending,"15-20 members for 1 week to iron out issues"
+"Hard launch public access",Launch,Community Manager,2026-02-17,Pending,"Open doors full promo across email, social, website"
+"--- Created with The Discord Community Operations Playbook ---",,,,,

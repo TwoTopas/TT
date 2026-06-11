@@ -1,0 +1,12 @@
+Referral Source,Offer to Referrer,Offer to New Member,Conversion Rate,Total Acquired,Campaign Period,Notes
+"Where referrals come from","What the existing member gets","What the new member gets","% of referrals who convert","Total members acquired","Start and end dates","Results and observations"
+"Welcome email sequence","1 month free ($29 value)","First month half-price ($14.50)","8%",23,2026-01-15 to 2026-03-15,"Best converting source. 8% from warm leads is strong."
+"Member dashboard prompt","Community merch pack ($25 value)","Free first month ($29 value)","3%",9,2026-02-01 to 2026-04-01,"Low conversion. Merch not compelling enough — test cash credit instead."
+"In-community share button","$10 account credit","$10 off first month","5%",14,2026-02-01 to 2026-04-01,"Decent performer. Credit auto-applies which reduces friction."
+"Ambassador program","20% commission on all referrals","None","12%",31,2026-01-01 to 2026-06-01,"Top performer. Ambassadors have personal networks and trust."
+"Social media share (Twitter)","Shoutout from community account","7-day free trial","4%",11,2026-03-01 to 2026-06-01,"Good for brand awareness but lower conversion than direct links."
+"Email signature link","None","14-day free trial","2%",6,2026-04-01 to 2026-06-01,"Passive source. Low volume but zero effort to maintain."
+"Live event / AMA","Free coaching call ($50 value)","Event attendee discount (20% off)","7%",18,2026-04-01 to 2026-06-01,"Events are a strong conversion moment. Capitalize on FOMO."
+"Bring-a-friend month","Double XP + special role","Waived setup fee","6%",8,2026-05-01 to 2026-06-01,"Limited-time campaigns create urgency. Try quarterly."
+"Partner cross-promotion","Revenue share (15%)","Bundle discount (30% off both)","9%",15,2026-03-01 to 2026-06-01,"Partnerships with adjacent communities work well. Vet partners carefully."
+"Member spotlight feature","Community spotlight + testimonial","None","11%",7,2026-05-01 to 2026-06-01,"Small sample but strong conversion. Social recognition is underrated."

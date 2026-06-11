@@ -1,0 +1,17 @@
+Day,Theme,Channel,Content Type,Author,Status
+"Day of week","Weekly topic pillar","Where it gets posted","Format of the post","Who creates it","Planned / Scheduled / Posted"
+Monday,Educational,#resources,"Tutorial post: How to write a welcome message that gets replies",Content Creator,Scheduled
+Monday,Educational,Newsletter,"Deep dive: The Engagement Layer System — Free vs Paid vs VIP tiers",Community Manager,Planned
+Tuesday,Community Spotlight,#general,"Member win of the week — tag and celebrate an active member",Community Manager,Scheduled
+Tuesday,Community Spotlight,#showcase,"Open thread: Share what you're building this week",Members (prompted),Planned
+Wednesday,Interactive,#ama,"Live AMA: Ask me anything about growing your community",Community Manager,Scheduled
+Wednesday,Interactive,#polls,"Poll: What's your biggest challenge with member retention right now?",Content Creator,Scheduled
+Wednesday,Interactive,#voice,"Weekly voice chat co-working session (2pm ET / 11am PT)",Community Manager,Scheduled
+Thursday,Culture / BTS,#behind-the-scenes,"Screenshot tour: How we set up our moderation workflow",Admin,Planned
+Thursday,Culture / BTS,#resources,"Tool review: Top 3 Discord bots we recommend for 2026",Content Creator,Scheduled
+Friday,Roundup,#announcements,"Weekly recap: top posts, upcoming events, and member milestones",Community Manager,Scheduled
+Friday,Roundup,Newsletter,"Friday digest: what happened in the community this week + weekend plans",Content Creator,Planned
+Saturday,Light Engagement,#off-topic,"Weekend thread: What are you watching, reading, or playing?",Community Manager,Scheduled
+Saturday,Light Engagement,#voice,"Casual Saturday co-work session — no agenda, just company",Community Manager,Planned
+Sunday,Planning / Preview,#announcements,"Next week preview: themes, events, and content coming up",Content Creator,Scheduled
+"--- Created with The Discord Community Operations Playbook ---",,,,,,

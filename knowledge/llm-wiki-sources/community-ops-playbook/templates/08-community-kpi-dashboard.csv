@@ -1,0 +1,15 @@
+Metric,Current Value,Target Value,Trend,Status,Action Required
+"What you're measuring","Your current number","Goal for this period","Up / Down / Flat","On Track / Needs Attention / Critical","What to do if off track"
+"Member Acquisition Rate",84 new / month,100 new / month,Up,On Track,"Keep current channels. Double down on Twitter onboarding posts."
+"DAU / MAU Ratio",22%,30%,Flat,Needs Attention,"Increase daily engagement triggers. Add daily thread in #general."
+"Engagement Rate (posts per member)",4.2 posts / week,6 posts / week,Down,Needs Attention,"Launch weekly challenges. Recognize top contributors publicly."
+"Free → Paid Conversion Rate",8%,12%,Flat,Needs Attention,"Improve trial experience. Add feature-limited paid preview."
+"Member Retention Rate (90-day)",76%,85%,Down,Needs Attention,"Audit churned members. Strengthen 14-day onboarding sequence."
+"VIP Upgrade Rate",3%,5%,Up,On Track,"Continue monthly VIP preview sessions. Keep 1:1 outreach."
+"Churn Rate (monthly)",6%,4%,Up,Needs Attention,"Re-activation campaign for dormant members. Win-back offers."
+"Average Response Time (mod)",15 minutes,10 minutes,Flat,On Track,"Maintain current mod coverage. Add 1 more mod for night shifts."
+"Net Promoter Score (NPS)",42,50,Up,On Track,"NPS trending up. Qualitative feedback shows value perception improving."
+"Monthly Recurring Revenue (MRR)","$3,240","$4,000",Up,On Track,"Growth rate ~8%/month. On track for Q2 target. Continue current strategy."
+"Referral Conversion Rate",6%,10%,Flat,Needs Attention,"Boost ambassador program incentives. Test double-sided rewards."
+"Event Attendance Rate",34%,50%,Down,Needs Attention,"Send earlier reminders. Add calendar link. Consider timezone rotation."
+"--- Created with The Discord Community Operations Playbook ---",,,,,,

@@ -1,0 +1,22 @@
+Create the Quick Start Guide for The Community Operations Playbook product.
+
+First read these files in order:
+1. product-guide.md
+2. translation-rules.md
+3. source-material-reference.md
+
+Then create a file at: C:\Users\hu\workspace\community-ops-playbook\quick-start-guide.md
+
+Requirements:
+- Write in native English, conversational but professional
+- NO Chinese platform references, NO translation-ese
+- ~20 pages of content (aim for ~4000-5000 words with plenty of formatting)
+- Sections:
+  1. What's in this product (overview of both tiers)
+  2. How to use the templates (general workflow)
+  3. Template-by-template quick guide (2-3 paragraphs each)
+  4. Setting up your community (Discord / Circle / Skool — brief platform setup)
+  5. Your first 30 days as a community manager
+  6. Next steps and resources
+
+Use markdown formatting with headings, subheadings, bold text, and bullet points. Make it scannable and actionable.

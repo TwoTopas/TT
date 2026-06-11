@@ -1,0 +1,30 @@
+Your task: Create 10 Google Sheets templates (as CSV files) for "The Community Operations Playbook" product.
+
+First read these files in order:
+1. product-guide.md — understand what to build (Section 2, Tier 1)
+2. translation-rules.md — understand the adaptation rules (MANDATORY)
+3. source-material-reference.md — understand the source content
+
+Then create all 10 CSV templates in a subdirectory 'templates/' inside C:\Users\hu\workspace\community-ops-playbook\
+
+Requirements for EVERY template:
+- Header row 1 with clear column names
+- Row 2 has brief column descriptions  
+- 10+ rows of realistic sample data starting row 3
+- Uses Western community terminology (Discord, Circle, Skool)
+- Native English, conversational tone
+- NO Chinese platform references, NO translation-ese, NO fabricated statistics
+
+The 10 templates:
+1. 01-community-launch-checklist.csv - Pre-launch planning tasks
+2. 02-member-onboarding-flow.csv - Welcome sequence for first 14 days
+3. 03-weekly-content-calendar.csv - Weekly post schedule by channel
+4. 04-engagement-score-tracker.csv - Measure member participation levels
+5. 05-member-segmentation-matrix.csv - Categorize members by behavior
+6. 06-referral-program-designer.csv - Referral incentives and tracking
+7. 07-event-planning-sop.csv - Event planning workflow
+8. 08-community-kpi-dashboard.csv - Key metrics dashboard
+9. 09-feedback-collection-system.csv - Structured feedback tracking
+10. 10-revenue-tracking-sheet.csv - Track community revenue
+
+After creating all 10, report the file sizes and what's in each.
