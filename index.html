@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TWO TOPAS - Digital Products for Freelancers &amp; Creators</title>
+<meta name="description" content="Digital products for freelancers, creators and community builders — operations playbooks, onboarding kits, income trackers and AI prompts.">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+.container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 80px 0 56px;
+}
+.hero h1 {
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: #f1f5f9;
+}
+.hero h1 span { color: #38bdf8; }
+.hero p {
+  margin-top: 16px;
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  color: #94a3b8;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Section titles */
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 32px;
+  color: #f1f5f9;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, #334155, transparent);
+}
+
+/* Product grid */
+.products { padding: 0 0 64px; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Card */
+.card {
+  background: #1e293b;
+  border-radius: 12px;
+  padding: 24px;
+  border-top: 4px solid #334155;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+.card-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  width: fit-content;
+}
+.card-badge.free { background: #065f46; color: #6ee7b7; }
+.card-badge.paid { background: #1e3a5f; color: #93c5fd; }
+.card-badge.bundle { background: #5b21b6; color: #c4b5fd; }
+.card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #f1f5f9;
+  line-height: 1.3;
+}
+.card .price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #38bdf8;
+  margin-bottom: 16px;
+}
+.card .price .original {
+  font-size: 0.85rem;
+  color: #64748b;
+  text-decoration: line-through;
+  margin-left: 6px;
+  font-weight: 400;
+}
+.card .btn {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background: #38bdf8;
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s;
+  border: none;
+  cursor: pointer;
+}
+.card .btn:hover { background: #7dd3fc; }
+.card .btn-outline {
+  background: transparent;
+  color: #38bdf8;
+  border: 1.5px solid #38bdf8;
+}
+.card .btn-outline:hover { background: rgba(56,189,248,0.1); }
+
+/* Card border colours */
+.card.border-blue   { border-top-color: #38bdf8; }
+.card.border-green  { border-top-color: #4ade80; }
+.card.border-purple { border-top-color: #a78bfa; }
+.card.border-orange { border-top-color: #fb923c; }
+.card.border-pink   { border-top-color: #f472b6; }
+.card.border-teal   { border-top-color: #2dd4bf; }
+.card.border-amber  { border-top-color: #fbbf24; }
+
+/* Tools */
+.tools {
+  padding: 0 0 64px;
+}
+.tool-card {
+  background: #1e293b;
+  border-radius: 12px;
+  padding: 32px;
+  border-top: 4px solid #38bdf8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.tool-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+.tool-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #f1f5f9;
+}
+.tool-card p {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+.tool-card .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 24px;
+  background: #38bdf8;
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.tool-card .btn:hover { background: #7dd3fc; }
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 32px 24px;
+  border-top: 1px solid #1e293b;
+  color: #64748b;
+  font-size: 0.85rem;
+}
+footer a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+footer a:hover { text-decoration: underline; }
+
+@media (max-width: 640px) {
+  .hero { padding: 56px 0 40px; }
+  .grid { grid-template-columns: 1fr; }
+  .tool-card { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>TWO <span>TOPAS</span> &mdash; Digital Products for Freelancers, Creators &amp; Community Builders</h1>
+    <p>Downloadable templates, playbooks, and tools to help you run your independent business with confidence.</p>
+  </section>
+
+  <!-- Products -->
+  <section class="products">
+    <h2 class="section-title">Products</h2>
+    <div class="grid">
+
+      <!-- 1 -->
+      <div class="card border-blue">
+        <span class="card-badge paid">Paid</span>
+        <h3>The Community Operations Playbook</h3>
+        <p style="font-size:0.88rem;color:#94a3b8;margin-bottom:12px;">Standard templates, SOPs &amp; systems for running a thriving community.</p>
+        <div class="price">$19 <span class="original">$39&ndash;$49</span></div>
+        <a href="https://topas0.gumroad.com/l/community-ops-playbook" class="btn" target="_blank" rel="noopener">Buy on Gumroad &rarr;</a>
+      </div>
+
+      <!-- 2 -->
+      <div class="card border-green">
+        <span class="card-badge paid">Paid</span>
+        <h3>Freelancer Client Onboarding Kit</h3>
+        <p style="font-size:0.88rem;color:#94a3b8;margin-bottom:12px;">Welcome emails, proposal templates, and onboarding workflows.</p>
+        <div class="price">$29</div>
+        <a href="https://topas0.gumroad.com/l/ajoehe" class="btn" target="_blank" rel="noopener">Buy on Gumroad &rarr;</a>
+      </div>
+
+      <!-- 3 -->
+      <div class="card border-purple">
+        <span class="card-badge paid">Paid</span>
+        <h3>Short-Term Rental Income Tracker</h3>
+        <p style="font-size:0.88rem;color:#94a3b8;margin-bottom:12px;">Track bookings, expenses, and profitability across all your properties.</p>
+        <div class="price">$19</div>
+        <a href="https://topas0.gumroad.com/l/qrvjwsu" class="btn" target="_blank" rel="noopener">Buy on Gumroad &rarr;</a>
+      </div>
+
+      <!-- 4 -->
+      <div class="card border-orange">
+        <span class="card-badge paid">Paid</span>
+        <h3>AI Business Prompts for Freelancers</h3>
+        <p style="font-size:0.88rem;color:#94a3b8;margin-bottom:12px;">100+ ChatGPT prompts for proposals, content, strategy &amp; more.</p>
+        <div class="price">$19</div>
+        <a href="https://topas0.gumroad.com/l/ypbzbd" class="btn" target="_blank" rel="noopener">Buy on Gumroad &rarr;</a>
+      </div>
+
+      <!-- 5 -->
+      <div class="card border-pink">
+        <span class="card-badge bundle">Bundle</span>
+        <h3>Freelancer Complete Bundle</h3>
+        <p style="font-size:0.88rem;color:#94a3b8;margin-bottom:12px;">Everything you need &mdash; playbook, onboarding kit, AI prompts &amp; more &mdash; at a discount.</p>
+        <div class="price">$69 <span class="original">$86+</span></div>
+        <a href="https://topas0.gumroad.com/l/qafsl" class="btn" target="_blank" rel="noopener">Buy on Gumroad &rarr;</a>
+      </div>
+
+      <!-- 6 -->
+      <div class="card border-teal">
+        <span class="card-badge free">Free</span>
+        <h3>Freelancer Onboarding Checklist</h3>
+        <p style="font-size:0.88rem;color:#94a3b8;margin-bottom:12px;">A simple checklist to onboard every new client with confidence.</p>
+        <div class="price">Free</div>
+        <a href="https://topas0.gumroad.com/l/egqlm" class="btn btn-outline" target="_blank" rel="noopener">Download Free &rarr;</a>
+      </div>
+
+      <!-- 7 -->
+      <div class="card border-amber">
+        <span class="card-badge free">Free</span>
+        <h3>Airbnb Income Tracker</h3>
+        <p style="font-size:0.88rem;color:#94a3b8;margin-bottom:12px;">Track your short-term rental income and expenses in one spreadsheet.</p>
+        <div class="price">Free</div>
+        <a href="https://topas0.gumroad.com/l/lgonx" class="btn btn-outline" target="_blank" rel="noopener">Download Free &rarr;</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Tools -->
+  <section class="tools">
+    <h2 class="section-title">Tools</h2>
+    <div class="tool-card">
+      <div>
+        <h3>Freelance Rate Calculator</h3>
+        <p>Calculate your ideal hourly, project, or retainer rate based on your target income and expenses.</p>
+      </div>
+      <a href="https://freelance-rate-calc.surge.sh" class="btn" target="_blank" rel="noopener">Open Tool &rarr;</a>
+    </div>
+  </section>
+
+</div>
+
+<!-- Footer -->
+<footer>
+  TWO TOPAS &middot; <a href="https://topas0.gumroad.com" target="_blank" rel="noopener">topas0.gumroad.com</a>
+</footer>
+
+</body>
+</html>
