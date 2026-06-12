@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community Health Score — Self-Assessment Quiz</title>
+<meta name="description" content="A 10-question self-assessment quiz for community managers to evaluate community health and get actionable next steps.">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container { max-width: 720px; margin: 0 auto; padding: 0 24px; width: 100%; }
+
+/* Header */
+header {
+  text-align: center;
+  padding: 48px 24px 32px;
+}
+header h1 {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #f1f5f9;
+}
+header h1 span { color: #38bdf8; }
+header p {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: #94a3b8;
+}
+
+/* Quiz card */
+.quiz-wrapper {
+  flex: 1;
+  padding-bottom: 48px;
+}
+
+.quiz-card {
+  background: #1e293b;
+  border-radius: 16px;
+  padding: 32px;
+  border: 1px solid #334155;
+  min-height: 420px;
+  position: relative;
+}
+
+/* Progress bar */
+.progress-section { margin-bottom: 28px; }
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
+.progress-bar {
+  height: 6px;
+  background: #334155;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  border-radius: 3px;
+  transition: width 0.5s ease;
+  width: 0%;
+}
+
+/* Question */
+.question-area {
+  position: relative;
+}
+.question-slide {
+  animation: fadeSlide 0.35s ease forwards;
+}
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.question-slide.exit {
+  animation: fadeSlideOut 0.25s ease forwards;
+}
+@keyframes fadeSlideOut {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(-20px); }
+}
+
+.question-number {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #38bdf8;
+  margin-bottom: 8px;
+}
+.question-text {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+
+/* Options */
+.options { display: flex; flex-direction: column; gap: 10px; }
+.option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: #0f172a;
+  border: 1.5px solid #334155;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  user-select: none;
+}
+.option:hover {
+  border-color: #38bdf8;
+  background: rgba(56,189,248,0.05);
+}
+.option.selected {
+  border-color: #38bdf8;
+  background: rgba(56,189,248,0.1);
+  box-shadow: 0 0 0 1px rgba(56,189,248,0.3);
+  color: #f1f5f9;
+}
+.option .radio-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #475569;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, background 0.2s;
+}
+.option.selected .radio-dot {
+  border-color: #38bdf8;
+  background: #38bdf8;
+}
+.option .radio-dot::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #0f172a;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.option.selected .radio-dot::after {
+  opacity: 1;
+}
+
+/* Navigation */
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 28px;
+  gap: 12px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s, transform 0.15s;
+  text-decoration: none;
+}
+.btn:active { transform: scale(0.97); }
+.btn-back {
+  background: transparent;
+  color: #94a3b8;
+  border: 1.5px solid #334155;
+}
+.btn-back:hover { background: #1e293b; color: #e2e8f0; }
+.btn-next {
+  background: #38bdf8;
+  color: #0f172a;
+  font-weight: 700;
+  margin-left: auto;
+}
+.btn-next:hover { background: #7dd3fc; }
+.btn-next:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Results */
+.results { display: none; }
+.results.visible { display: block; animation: fadeSlide 0.4s ease forwards; }
+.quiz-area.hidden { display: none; }
+
+.score-display {
+  text-align: center;
+  padding: 32px 0;
+}
+.score-number {
+  font-size: 4rem;
+  font-weight: 800;
+  color: #38bdf8;
+  line-height: 1;
+}
+.score-label {
+  font-size: 1rem;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+.score-max {
+  font-size: 1.2rem;
+  color: #64748b;
+}
+
+.tier-badge {
+  display: inline-block;
+  padding: 6px 20px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-top: 16px;
+}
+.tier-needs-work { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
+.tier-building { background: rgba(251,191,36,0.15); color: #fcd34d; border: 1px solid rgba(251,191,36,0.3); }
+.tier-optimized { background: rgba(52,211,153,0.15); color: #6ee7b7; border: 1px solid rgba(52,211,153,0.3); }
+
+.analysis {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.analysis-item {
+  background: #0f172a;
+  border-radius: 10px;
+  padding: 16px 18px;
+  border-left: 3px solid #38bdf8;
+}
+.analysis-item .label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748b;
+}
+.analysis-item .value {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  margin-top: 2px;
+}
+
+.cta-section {
+  text-align: center;
+  margin-top: 32px;
+  padding: 28px;
+  background: #0f172a;
+  border-radius: 12px;
+  border: 1px solid #334155;
+}
+.cta-section h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 6px;
+}
+.cta-section p {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-bottom: 18px;
+}
+.cta-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  background: #38bdf8;
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+.cta-btn:hover { background: #7dd3fc; }
+.cta-btn:active { transform: scale(0.97); }
+
+.retake-btn {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 10px 24px;
+  background: transparent;
+  color: #94a3b8;
+  border: 1.5px solid #334155;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  text-decoration: none;
+}
+.retake-btn:hover { background: #1e293b; color: #e2e8f0; }
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 24px;
+  border-top: 1px solid #1e293b;
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 640px) {
+  header { padding: 32px 16px 24px; }
+  .quiz-card { padding: 24px 20px; min-height: 360px; }
+  .question-text { font-size: 1.05rem; }
+  .option { padding: 12px 14px; font-size: 0.9rem; }
+  .btn { padding: 10px 18px; font-size: 0.85rem; }
+  .nav-buttons { margin-top: 24px; }
+  .score-number { font-size: 3rem; }
+  .cta-section { padding: 24px 16px; }
+  .analysis-item { padding: 14px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Community <span>Health Score</span></h1>
+  <p>Evaluate your community in 10 questions &mdash; get your score and next steps</p>
+</header>
+
+<div class="container quiz-wrapper">
+  <div class="quiz-card" id="app">
+
+    <!-- Quiz -->
+    <div class="quiz-area" id="quizArea">
+
+      <!-- Progress -->
+      <div class="progress-section">
+        <div class="progress-header">
+          <span id="progressLabel">Question 1 of 10</span>
+          <span id="progressPct">10%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <!-- Question -->
+      <div class="question-area" id="questionArea">
+        <div class="question-slide" id="questionSlide">
+          <div class="question-number" id="questionNumber">QUESTION 1</div>
+          <div class="question-text" id="questionText">Loading...</div>
+          <div class="options" id="optionsContainer"></div>
+          <div class="nav-buttons">
+            <button class="btn btn-back" id="backBtn">&larr; Back</button>
+            <button class="btn btn-next" id="nextBtn">Next &rarr;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div class="results" id="resultsArea">
+      <div class="score-display">
+        <div class="score-number" id="finalScore">0</div>
+        <div class="score-label">out of <span class="score-max">40</span></div>
+        <div class="tier-badge" id="tierBadge"></div>
+      </div>
+      <div class="analysis" id="analysisContainer"></div>
+      <div class="cta-section" id="ctaSection">
+        <h3 id="ctaTitle">Ready to take the next step?</h3>
+        <p id="ctaDesc">Explore resources to help you build a thriving community.</p>
+        <a class="cta-btn" id="ctaBtn" href="#" target="_blank" rel="noopener">Get the Playbook &rarr;</a>
+        <br>
+        <button class="retake-btn" id="retakeBtn">&larr; Retake Quiz</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>TWO TOPAS</footer>
+
+<script>
+(function(){
+  const questions = [
+    { q: 'How many active members does your community have?', options: ['<50', '50–200', '200–1000', '1000+'] },
+    { q: 'What is your average engagement rate?', options: ['<5%', '5–15%', '15–30%', '30%+'] },
+    { q: 'Do you have a structured onboarding process?', options: ['No', 'Basic', 'Yes, documented', 'Fully automated'] },
+    { q: 'How often do you post content?', options: ['Rarely', 'Weekly', 'Daily', 'Multiple times per day'] },
+    { q: 'Do you have a moderation system?', options: ['No', 'Basic rules', 'Documented code of conduct', 'Automated with mod team'] },
+    { q: 'What is your member retention after 30 days?', options: ['<30%', '30–60%', '60–80%', '80%+'] },
+    { q: 'Do you have a referral program?', options: ['No', 'Informal / word of mouth', 'Structured program', 'Fully automated'] },
+    { q: 'How much revenue comes from your community?', options: ['None', 'Some / sporadic', 'Consistent income', 'Primary income source'] },
+    { q: 'How many backup moderators do you have?', options: ['None', '1–2', '3–5', 'Full team'] },
+    { q: 'How much time do you spend on community per week?', options: ['<2 hours', '2–5 hours', '5–15 hours', '15+ hours'] }
+  ];
+
+  const tierConfig = [
+    { min: 10, max: 20, label: 'Needs Work', cssClass: 'tier-needs-work', ctaTitle: 'Start Building Your Community Foundation', ctaDesc: 'You have the seeds of a community. The Community Ops Playbook will help you establish systems, onboarding, and engagement from the ground up.', ctaText: 'Get the Community Ops Playbook — $19', ctaUrl: 'https://topas0.gumroad.com/l/community-ops-playbook' },
+    { min: 21, max: 30, label: 'Building Momentum', cssClass: 'tier-building', ctaTitle: 'You’re on the Right Track', ctaDesc: 'Your community has good bones. Level up with structured processes, retention strategies, and monetization playbooks.', ctaText: 'Level Up with the Playbook — $39', ctaUrl: 'https://topas0.gumroad.com/l/community-ops-playbook' },
+    { min: 31, max: 40, label: 'Optimized', cssClass: 'tier-optimized', ctaTitle: 'You’re Running a High-Performance Community', ctaDesc: 'Your community is thriving. The Complete Bundle will help you scale with advanced systems, automation, and growth frameworks.', ctaText: 'Go Pro with the Complete Bundle — $49', ctaUrl: 'https://topas0.gumroad.com/l/community-ops-playbook' }
+  ];
+
+  const sectionLabels = ['Members & Scale', 'Engagement', 'Onboarding', 'Content', 'Moderation', 'Retention', 'Referrals', 'Revenue', 'Team', 'Time Investment'];
+
+  let currentQuestion = 0;
+  let answers = new Array(questions.length).fill(null);
+  let isTransitioning = false;
+
+  const quizArea = document.getElementById('quizArea');
+  const resultsArea = document.getElementById('resultsArea');
+  const questionSlide = document.getElementById('questionSlide');
+  const questionNumber = document.getElementById('questionNumber');
+  const questionText = document.getElementById('questionText');
+  const optionsContainer = document.getElementById('optionsContainer');
+  const progressFill = document.getElementById('progressFill');
+  const progressLabel = document.getElementById('progressLabel');
+  const progressPct = document.getElementById('progressPct');
+  const backBtn = document.getElementById('backBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const finalScore = document.getElementById('finalScore');
+  const tierBadge = document.getElementById('tierBadge');
+  const analysisContainer = document.getElementById('analysisContainer');
+  const ctaTitle = document.getElementById('ctaTitle');
+  const ctaDesc = document.getElementById('ctaDesc');
+  const ctaBtn = document.getElementById('ctaBtn');
+  const retakeBtn = document.getElementById('retakeBtn');
+
+  function renderQuestion(dir) {
+    const q = questions[currentQuestion];
+    questionNumber.textContent = 'QUESTION ' + (currentQuestion + 1);
+    questionText.textContent = q.q;
+
+    let html = '';
+    q.options.forEach((opt, i) => {
+      const sel = answers[currentQuestion] === i ? ' selected' : '';
+      html += '<div class="option' + sel + '" data-index="' + i + '">' +
+        '<div class="radio-dot"></div>' +
+        '<span>' + opt + '</span>' +
+        '</div>';
+    });
+    optionsContainer.innerHTML = html;
+
+    Array.from(optionsContainer.children).forEach(el => {
+      el.addEventListener('click', function(){
+        if (isTransitioning) return;
+        const idx = parseInt(this.dataset.index);
+        selectOption(idx);
+      });
+    });
+
+    updateProgress();
+    updateButtons();
+
+    // Animate in
+    questionSlide.className = 'question-slide';
+    void questionSlide.offsetWidth;
+    if (dir === 'next') {
+      questionSlide.style.animation = 'fadeSlide 0.35s ease forwards';
+    } else if (dir === 'prev') {
+      questionSlide.style.animation = 'fadeSlideRev 0.35s ease forwards';
+    } else {
+      questionSlide.style.animation = 'fadeSlide 0.35s ease forwards';
+    }
+  }
+
+  // Add reverse animation
+  const style = document.createElement('style');
+  style.textContent = '@keyframes fadeSlideRev { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }';
+  document.head.appendChild(style);
+
+  function selectOption(idx) {
+    answers[currentQuestion] = idx;
+    const options = optionsContainer.children;
+    for (let i = 0; i < options.length; i++) {
+      options[i].classList.toggle('selected', i === idx);
+    }
+    updateButtons();
+  }
+
+  function updateProgress() {
+    const pct = ((currentQuestion + 1) / questions.length) * 100;
+    progressFill.style.width = pct + '%';
+    progressLabel.textContent = 'Question ' + (currentQuestion + 1) + ' of ' + questions.length;
+    progressPct.textContent = Math.round(pct) + '%';
+  }
+
+  function updateButtons() {
+    backBtn.style.visibility = currentQuestion === 0 ? 'hidden' : 'visible';
+    const isLast = currentQuestion === questions.length - 1;
+    nextBtn.textContent = isLast ? 'See Results →' : 'Next →';
+    nextBtn.disabled = answers[currentQuestion] === null;
+  }
+
+  function goNext() {
+    if (isTransitioning) return;
+    if (answers[currentQuestion] === null) return;
+
+    if (currentQuestion === questions.length - 1) {
+      showResults();
+      return;
+    }
+
+    isTransitioning = true;
+    questionSlide.style.animation = 'fadeSlideOut 0.2s ease forwards';
+
+    setTimeout(function(){
+      currentQuestion++;
+      renderQuestion('next');
+      isTransitioning = false;
+    }, 200);
+  }
+
+  function goBack() {
+    if (isTransitioning) return;
+    if (currentQuestion === 0) return;
+
+    isTransitioning = true;
+    questionSlide.style.animation = 'fadeSlideOut 0.2s ease forwards';
+
+    setTimeout(function(){
+      currentQuestion--;
+      renderQuestion('prev');
+      isTransitioning = false;
+    }, 200);
+  }
+
+  function showResults() {
+    const total = answers.reduce((sum, a) => sum + (a !== null ? a + 1 : 0), 0);
+    quizArea.classList.add('hidden');
+    resultsArea.classList.add('visible');
+
+    finalScore.textContent = total;
+
+    const tier = tierConfig.find(t => total >= t.min && total <= t.max) || tierConfig[0];
+    tierBadge.textContent = tier.label;
+    tierBadge.className = 'tier-badge ' + tier.cssClass;
+
+    // Analysis
+    let analysisHtml = '';
+    questions.forEach((q, i) => {
+      const ansIdx = answers[i];
+      const score = ansIdx !== null ? ansIdx + 1 : 0;
+      const scoreLabel = score <= 1 ? 'Needs attention' : score === 2 ? 'Developing' : score === 3 ? 'Strong' : 'Excellent';
+      analysisHtml += '<div class="analysis-item">' +
+        '<div class="label">' + sectionLabels[i] + ' &mdash; ' + scoreLabel + ' (' + score + '/4)</div>' +
+        '<div class="value">' + q.options[ansIdx] + '</div>' +
+        '</div>';
+    });
+    analysisContainer.innerHTML = analysisHtml;
+
+    ctaTitle.textContent = tier.ctaTitle;
+    ctaDesc.textContent = tier.ctaDesc;
+    ctaBtn.textContent = tier.ctaText;
+    ctaBtn.href = tier.ctaUrl;
+  }
+
+  function retake() {
+    currentQuestion = 0;
+    answers = new Array(questions.length).fill(null);
+    resultsArea.classList.remove('visible');
+    quizArea.classList.remove('hidden');
+    renderQuestion('next');
+  }
+
+  // Event listeners
+  nextBtn.addEventListener('click', goNext);
+  backBtn.addEventListener('click', goBack);
+  retakeBtn.addEventListener('click', retake);
+
+  // Keyboard
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowRight' || e.key === 'Enter') {
+      if (resultsArea.classList.contains('visible')) return;
+      goNext();
+    }
+    if (e.key === 'ArrowLeft') {
+      if (resultsArea.classList.contains('visible')) return;
+      goBack();
+    }
+  });
+
+  // Init
+  renderQuestion('next');
+})();
+</script>
+</body>
+</html>
