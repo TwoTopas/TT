@@ -42,7 +42,9 @@ TT (Board)
        ├── Product Manager      — 新产品开发
        ├── Growth Marketing     — 流量+分销
        ├── Operations Executive — 日常执行+cron
-       └── Strategy Consultant  — 调研+分析
+       ├── Strategy Consultant  — 调研+分析
+       ├── Security & Compliance — 隐私+安全
+       └── Legal & Compliance   — 法务+合规
 ```
 
 ## Workflow Pattern

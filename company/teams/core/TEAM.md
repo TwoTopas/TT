@@ -9,6 +9,7 @@ includes:
   - ../../agents/operations/AGENTS.md
   - ../../agents/strategy/AGENTS.md
   - ../../agents/security/AGENTS.md
+  - ../../agents/legal/AGENTS.md
 tags:
   - core
   - product
