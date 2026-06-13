@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community Growth Calculator — Predict Your 90-Day Growth</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d27;
+    --border: #2a2d3c;
+    --accent: #6c5ce7;
+    --accent2: #00cec9;
+    --green: #00b894;
+    --red: #e17055;
+    --text: #e2e8f0;
+    --muted: #8892a4;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+  }
+  .container { max-width: 720px; width: 100%; }
+  
+  h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .subtitle {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .card h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--accent2);
+  }
+  
+  .form-group {
+    margin-bottom: 1.2rem;
+  }
+  .form-group label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+  }
+  .form-group input, .form-group select {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group select:focus {
+    border-color: var(--accent);
+  }
+  .form-group .hint {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.2rem;
+  }
+
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 500px) { .row { grid-template-columns: 1fr; } }
+
+  .btn {
+    width: 100%;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s, opacity 0.15s;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), #8b7cf7);
+    color: white;
+  }
+  .btn-primary:hover { transform: translateY(-1px); opacity: 0.9; }
+  .btn-secondary {
+    background: var(--border);
+    color: var(--text);
+  }
+  .btn-secondary:hover { background: #3a3d4c; }
+
+  .results { display: none; }
+  .results.show { display: block; }
+
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem; margin-bottom: 1.5rem; }
+  @media (max-width: 500px) { .stat-grid { grid-template-columns: 1fr 1fr; } }
+  
+  .stat-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat-card .value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+  .stat-card .label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .stat-card .value.green { color: var(--green); }
+  .stat-card .value.red { color: var(--red); }
+  .stat-card .value.accent { color: var(--accent); }
+  .stat-card .value.accent2 { color: var(--accent2); }
+
+  .chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 1.5rem auto;
+    aspect-ratio: 1;
+  }
+
+  .growth-bar {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+  }
+  .growth-bar .bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+  }
+  .growth-bar .bar-track {
+    height: 8px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .growth-bar .bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    width: 0%;
+    transition: width 0.5s ease;
+  }
+
+  .recommendations {
+    list-style: none;
+  }
+  .recommendations li {
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .recommendations li:last-child { border-bottom: none; }
+  .recommendations li::before {
+    content: "→ ";
+    color: var(--accent2);
+  }
+
+  .upsell {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding: 1.2rem;
+    background: linear-gradient(135deg, rgba(108,92,231,0.1), rgba(0,206,201,0.1));
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+  }
+  .upsell p {
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+    color: var(--muted);
+  }
+  .upsell a {
+    color: var(--accent2);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .upsell a:hover { text-decoration: underline; }
+
+  .footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+    margin-top: 2rem;
+    padding: 1rem;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>📈 Community Growth Calculator</h1>
+  <p class="subtitle">Enter your community's current stats. We'll project 30, 60, and 90-day growth and give you actionable recommendations.</p>
+
+  <div class="card" id="input-card">
+    <h2>Your Community Stats</h2>
+    
+    <div class="row">
+      <div class="form-group">
+        <label>Total Members</label>
+        <input type="number" id="members" value="500" min="1">
+      </div>
+      <div class="form-group">
+        <label>Weekly New Members</label>
+        <input type="number" id="newPerWeek" value="15" min="0">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <label>Weekly Active Members (posted/chatted)</label>
+        <input type="number" id="activeWeekly" value="80" min="0">
+      </div>
+      <div class="form-group">
+        <label>Weekly Churned / Left</label>
+        <input type="number" id="churnedWeekly" value="5" min="0">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <label>Community Type</label>
+        <select id="type">
+          <option value="startup">Startup / SaaS</option>
+          <option value="gaming">Gaming Server</option>
+          <option value="creator">Creator / Influencer</option>
+          <option value="course">Online Course</option>
+          <option value="other" selected>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Months Active</label>
+        <input type="number" id="monthsActive" value="6" min="1" max="120">
+      </div>
+    </div>
+
+    <button class="btn btn-primary" onclick="calculate()">Calculate Growth Forecast</button>
+  </div>
+
+  <div class="results card" id="results-card">
+    <h2>📊 Your Growth Forecast</h2>
+    
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="value accent" id="proj30">0</div>
+        <div class="label">30-Day Members</div>
+      </div>
+      <div class="stat-card">
+        <div class="value accent2" id="proj60">0</div>
+        <div class="label">60-Day Members</div>
+      </div>
+      <div class="stat-card">
+        <div class="value green" id="proj90">0</div>
+        <div class="label">90-Day Members</div>
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="value" id="activeRate" style="color:var(--accent2)">0%</div>
+        <div class="label">Engagement Rate</div>
+      </div>
+      <div class="stat-card">
+        <div class="value" id="churnRate">0%</div>
+        <div class="label">Weekly Churn %</div>
+      </div>
+      <div class="stat-card">
+        <div class="value" id="netGrowth">0</div>
+        <div class="label">Weekly Net Growth</div>
+      </div>
+    </div>
+
+    <div id="chart-container" class="chart-container">
+      <canvas id="growthChart"></canvas>
+    </div>
+
+    <div class="card" style="background:var(--bg); border-color:var(--border);">
+      <h2>💡 Recommendations</h2>
+      <ul class="recommendations" id="recs"></ul>
+    </div>
+
+    <div class="upsell">
+      <p>This is one of 10+ tools in <strong>The Community Operations Playbook</strong>.</p>
+      <p>Get the full system — 80-page playbook, 15 templates, health score tool, and burnout prevention guide.</p>
+      <a href="https://topas0.gumroad.com/l/community-ops-playbook" target="_blank">→ Get the Full Playbook (from $19, coupon GET10)</a>
+    </div>
+
+    <button class="btn btn-secondary" onclick="resetForm()" style="margin-top:1rem;">← Recalculate</button>
+  </div>
+
+  <div class="footer">
+    Made for community operators who want data-driven decisions.
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let chartInstance = null;
+
+function calculate() {
+  const members = parseInt(document.getElementById('members').value) || 500;
+  const newPerWeek = parseInt(document.getElementById('newPerWeek').value) || 0;
+  const activeWeekly = parseInt(document.getElementById('activeWeekly').value) || 0;
+  const churnedWeekly = parseInt(document.getElementById('churnedWeekly').value) || 0;
+  const monthsActive = parseInt(document.getElementById('monthsActive').value) || 6;
+
+  // Calculations
+  const engagementRate = members > 0 ? (activeWeekly / members * 100) : 0;
+  const churnRate = members > 0 ? (churnedWeekly / members * 100) : 0;
+  const netGrowth = newPerWeek - churnedWeekly;
+  
+  // Projections (compound weekly)
+  let proj = [members];
+  for (let w = 1; w <= 12; w++) {
+    let growthRate = netGrowth / members;
+    // Modestly adjust growth rate based on engagement (higher engagement = more word of mouth)
+    let adjGrowth = growthRate * (1 + (engagementRate / 100) * 0.3);
+    // Mature communities grow slower
+    let maturityFactor = Math.max(0.5, 1 - (monthsActive / 60) * 0.3);
+    adjGrowth *= maturityFactor;
+    
+    let next = proj[w-1] * (1 + adjGrowth);
+    proj.push(Math.round(Math.max(next, proj[w-1] * 0.9))); // never lose more than 10%/week
+  }
+
+  const proj30 = proj[4];  // ~4 weeks
+  const proj60 = proj[8];  // ~8 weeks
+  const proj90 = proj[12]; // ~12 weeks
+
+  // Display
+  document.getElementById('proj30').textContent = proj30.toLocaleString();
+  document.getElementById('proj60').textContent = proj60.toLocaleString();
+  document.getElementById('proj90').textContent = proj90.toLocaleString();
+  document.getElementById('activeRate').textContent = engagementRate.toFixed(1) + '%';
+  document.getElementById('churnRate').textContent = churnRate.toFixed(1) + '%';
+  document.getElementById('netGrowth').textContent = netGrowth;
+
+  // Color-code values
+  const activeEl = document.getElementById('activeRate');
+  activeEl.style.color = engagementRate >= 15 ? '#00b894' : engagementRate >= 8 ? '#ffeaa7' : '#e17055';
+  
+  const churnEl = document.getElementById('churnRate');
+  churnEl.style.color = churnRate <= 1 ? '#00b894' : churnRate <= 3 ? '#ffeaa7' : '#e17055';
+
+  // Chart
+  if (chartInstance) chartInstance.destroy();
+  const ctx = document.getElementById('growthChart').getContext('2d');
+  const labels = ['Now', ...Array.from({length: 12}, (_, i) => `W${i+1}`)];
+  
+  chartInstance = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Members',
+        data: [members, ...proj.slice(1)],
+        borderColor: '#6c5ce7',
+        backgroundColor: (ctx) => {
+          const g = ctx.chart.ctx.createLinearGradient(0, 0, 0, 400);
+          g.addColorStop(0, 'rgba(108,92,231,0.2)');
+          g.addColorStop(1, 'rgba(108,92,231,0)');
+          return g;
+        },
+        fill: true,
+        tension: 0.4,
+        pointRadius: 3,
+        pointBackgroundColor: '#6c5ce7',
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        legend: { display: false }
+      },
+      scales: {
+        x: {
+          grid: { color: 'rgba(255,255,255,0.05)' },
+          ticks: { color: '#8892a4', font: { size: 10 } }
+        },
+        y: {
+          grid: { color: 'rgba(255,255,255,0.05)' },
+          ticks: { color: '#8892a4', font: { size: 10 } }
+        }
+      }
+    }
+  });
+
+  // Recommendations
+  const recs = [];
+  if (engagementRate < 10) recs.push('Your engagement rate is low. Focus on daily prompts, AMAs, and member spotlights to spark conversation.');
+  if (churnRate > 3) recs.push('Weekly churn exceeds 3%. Create a retention workflow: welcome new members, re-engage lurkers, and survey departing members.');
+  if (newPerWeek < 5) recs.push('New member inflow is low. Start a referral program, cross-promote with adjacent communities, and optimize your invite page.');
+  if (netGrowth <= 0) recs.push('You are in negative growth territory. Your churn exceeds new arrivals. This is the #1 priority — pause growth efforts and fix retention first.');
+  if (engagementRate >= 15 && churnRate <= 1) recs.push('You have a healthy, sticky community. Time to scale: invest in referral systems, member-generated content, and paid tiers.');
+  if (monthsActive < 3) recs.push('Your community is still new. Focus on the first 30 days: 1:1 welcomes, establish posting cadence, and get early members to invite peers.');
+  
+  if (recs.length === 0) {
+    recs.push('Your metrics look balanced. Keep monitoring weekly and focus on one growth lever at a time — try member referrals first.');
+  }
+  recs.push('Track these numbers weekly. A 5% improvement in engagement compounds into 30%+ more active members within 90 days.');
+
+  const recsEl = document.getElementById('recs');
+  recsEl.innerHTML = recs.map(r => `<li>${r}</li>`).join('');
+
+  // Show results
+  document.getElementById('input-card').style.display = 'none';
+  document.getElementById('results-card').classList.add('show');
+}
+
+function resetForm() {
+  document.getElementById('input-card').style.display = 'block';
+  document.getElementById('results-card').classList.remove('show');
+  if (chartInstance) {
+    chartInstance.destroy();
+    chartInstance = null;
+  }
+}
+</script>
+</body>
+</html>
