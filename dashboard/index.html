@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TT Business Dashboard</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f172a; color: #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding: 24px; }
+.container { max-width: 960px; margin: 0 auto; }
+h1 { font-size: 24px; font-weight: 700; color: #38bdf8; margin-bottom: 4px; }
+.subtitle { color: #64748b; font-size: 14px; margin-bottom: 24px; }
+.goal { background: linear-gradient(135deg, #1e293b, #0f172a); border: 1px solid #334155; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+.goal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+.goal-box { text-align: center; padding: 12px; border-radius: 8px; }
+.goal-box.pass { background: #064e3b; border: 1px solid #059669; }
+.goal-box.mid { background: #1c1917; border: 1px solid #d97706; }
+.goal-box.good { background: #1e3a5f; border: 1px solid #2563eb; }
+.goal-num { font-size: 28px; font-weight: 700; }
+.goal-label { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+.day-target { font-size: 14px; color: #38bdf8; margin-top: 8px; }
+.products { display: grid; gap: 12px; margin-bottom: 20px; }
+.product-card { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 16px; display: flex; justify-content: space-between; align-items: center; }
+.product-name { font-weight: 600; }
+.product-price { color: #64748b; font-size: 13px; }
+.product-sales { text-align: right; }
+.sales-num { font-size: 18px; font-weight: 700; color: #ef4444; }
+.sales-label { font-size: 11px; color: #64748b; }
+.channels { display: grid; gap: 8px; margin-bottom: 20px; }
+.channel-row { display: flex; justify-content: space-between; align-items: center; padding: 12px; background: #1e293b; border-radius: 6px; font-size: 14px; }
+.channel-status { width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; display: inline-block; }
+.status-ok { background: #22c55e; }
+.status-warn { background: #eab308; }
+.status-off { background: #ef4444; }
+.task-list { margin-top: 12px; }
+.task-item { padding: 10px; border-left: 3px solid #334155; margin-bottom: 8px; padding-left: 12px; font-size: 14px; }
+.task-item.active { border-left-color: #38bdf8; }
+.task-item.done { border-left-color: #22c55e; color: #64748b; }
+.task-revenue { color: #22c55e; font-size: 12px; }
+h2 { font-size: 16px; font-weight: 600; color: #94a3b8; margin-bottom: 12px; margin-top: 24px; }
+h3 { font-size: 14px; font-weight: 500; color: #38bdf8; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>TT Business Dashboard</h1>
+<div class="subtitle">使命：每天赚$10 · 数据来源：Gumroad API + cron</div>
+
+<div class="goal">
+  <h3>今日目标</h3>
+  <div class="goal-grid">
+    <div class="goal-box pass">
+      <div class="goal-num" style="color:#ef4444">$0</div>
+      <div class="goal-label">今日收入</div>
+    </div>
+    <div class="goal-box mid">
+      <div class="goal-num" style="color:#eab308">$10</div>
+      <div class="goal-label">及格线</div>
+    </div>
+    <div class="goal-box good">
+      <div class="goal-num" style="color:#38bdf8">$300</div>
+      <div class="goal-label">月目标</div>
+    </div>
+  </div>
+  <div class="day-target">距及格还差 $10 · 0单</div>
+</div>
+
+<h2>产品 (5个)</h2>
+<div class="products" id="products">
+  <div class="product-card">
+    <div><div class="product-name">Community Ops Playbook</div><div class="product-price">$19/$39/$49</div></div>
+    <div class="product-sales"><div class="sales-num">0</div><div class="sales-label">销量</div></div>
+  </div>
+  <div class="product-card">
+    <div><div class="product-name">Freelancer OS Notion</div><div class="product-price">$19/$39/$49</div></div>
+    <div class="product-sales"><div class="sales-num">0</div><div class="sales-label">销量</div></div>
+  </div>
+  <div class="product-card">
+    <div><div class="product-name">Freelancer Onboarding Kit</div><div class="product-price">$29</div></div>
+    <div class="product-sales"><div class="sales-num">0</div><div class="sales-label">销量</div></div>
+  </div>
+  <div class="product-card">
+    <div><div class="product-name">Rental Income Tracker</div><div class="product-price">$19</div></div>
+    <div class="product-sales"><div class="sales-num">0</div><div class="sales-label">销量</div></div>
+  </div>
+  <div class="product-card">
+    <div><div class="product-name">AI Business Prompts</div><div class="product-price">$19</div></div>
+    <div class="product-sales"><div class="sales-num">0</div><div class="sales-label">销量</div></div>
+  </div>
+</div>
+
+<h2>流量渠道</h2>
+<div class="channels">
+  <div class="channel-row"><span><span class="channel-status status-ok"></span> 小红书 (Playwright)</span><span>可搜私域素材</span></div>
+  <div class="channel-row"><span><span class="channel-status status-ok"></span> Reddit读帖+评论</span><span>可攒karma</span></div>
+  <div class="channel-row"><span><span class="channel-status status-ok"></span> Twitter/X</span><span>可读趋势</span></div>
+  <div class="channel-row"><span><span class="channel-status status-ok"></span> 全网搜索 (Exa MCP)</span><span>市场调研</span></div>
+  <div class="channel-row"><span><span class="channel-status status-ok"></span> YouTube字幕</span><span>内容来源</span></div>
+  <div class="channel-row"><span><span class="channel-status status-warn"></span> Gumroad Discover</span><span>需$100销售解锁</span></div>
+  <div class="channel-row"><span><span class="channel-status status-warn"></span> Reddit发帖</span><span>需攒karma</span></div>
+</div>
+
+<h2>当前任务</h2>
+<div class="task-list">
+  <div class="task-item active">
+    <strong>搜小红书 → 找产品素材</strong><br>
+    目标: 新赛道产品 → $3-5/天
+  </div>
+  <div class="task-item">
+    <strong>Reddit攒karma</strong><br>
+    目标: 100 comment karma → 能发帖引流
+  </div>
+  <div class="task-item">
+    <strong>GitHub Pages SEO</strong><br>
+    目标: 自然流量 → $2-3/天 (4-6月起效)
+  </div>
+</div>
+
+<div style="text-align:center;color:#475569;font-size:12px;margin-top:40px;padding:12px;border-top:1px solid #1e293b;">
+自动刷新 · Built by Hermes Agent · 2026-06-13
+</div>
+</div>
+</body>
+</html>
