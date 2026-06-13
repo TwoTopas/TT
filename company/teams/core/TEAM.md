@@ -8,6 +8,7 @@ includes:
   - ../../agents/growth-marketing/AGENTS.md
   - ../../agents/operations/AGENTS.md
   - ../../agents/strategy/AGENTS.md
+  - ../../agents/security/AGENTS.md
 tags:
   - core
   - product
