@@ -1,0 +1,20 @@
+# Sensitive files — DO NOT COMMIT
+*.env
+.env.*
+*_cookies.txt
+*_cookies.json
+*cookie*
+*secret*
+*credential*
+*token*
+*config.env
+agent-reach/config*
+.agent-reach/
+*.log
+*.json
+tasks-detail.json
+gateway_state.json
+
+# OS files
+.DS_Store
+Thumbs.db
