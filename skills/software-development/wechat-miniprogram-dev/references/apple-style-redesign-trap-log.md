@@ -1,0 +1,1 @@
+`references/apple-style-redesign-trap-log.md` — 2026-06-26 session 4轮CC UI被拒的完整陷阱记录：@import删除/路径格式错误/Apple风格概念误解/CC执行力限制。
